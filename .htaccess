@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+  Options -Multiviews
+  RewriteEngine On
+
+  # Serve real files (assets, etc.) as-is
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # Everything else (including the bare root) routes through the front controller
+  RewriteRule ^(.*)$ public/index.php?url=$1 [QSA,L]
+</IfModule>
